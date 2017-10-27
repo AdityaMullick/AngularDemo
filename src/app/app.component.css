@@ -1,0 +1,44 @@
+agm-map {
+  height: 300px;
+  width: 75%;
+  position: absolute;
+  bottom: 0px;
+  right: -200px;
+}
+
+
+body{
+  background-color: #ecf0f1;
+}
+table{
+  position: absolute;
+  bottom: 30%;
+  left: 10%;
+}
+chart{
+  width: 50%;
+  position: absolute;
+  right: 0px;
+}
+
+h1{
+  text-align: center;
+}
+#tbl td, #tbl th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+#tbl {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+#tbl th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+
+

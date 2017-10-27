@@ -1,0 +1,25 @@
+<h1>{{ title }}</h1>
+
+<!-- this creates a google map on the page with the given lat/lng from -->
+<!-- the component as the initial center of the map: -->
+<agm-map [latitude]="lat" [longitude]="lng">
+  <div *ngFor="let marker of users">
+    <agm-marker [latitude]="marker.position.lat" [longitude]="marker.position.lng"></agm-marker>
+  </div>
+</agm-map>
+<chart [type]="type" [data]="data" [options]="options"></chart>
+<table id="tbl">
+  <tr>
+    <td>Country</td>
+    <td>Number of <People></People></td>
+  </tr>
+  <tr *ngFor="let x of keys">
+    <div *ngIf="tableInfo[x] > 0">
+      <td>{{ x }}</td>
+      <td>{{tableInfo[x]}}</td>
+    </div>
+  </tr>
+</table>
+<h2>Number of users is {{users.length}}</h2>
+<h3></h3>
+
