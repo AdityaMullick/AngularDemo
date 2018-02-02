@@ -1,0 +1,95 @@
+function Diff(opcode, payload, path) {
+	this.opcode = opcode;
+	this.payload = payload;
+	this.path = path;
+	
+}
+
+function GroupBy() {
+	this.groupBy = this.init(users);
+	// maps all the id numbers of the users to their country
+	this.helperMap = {};
+	this.idNum = 1;
+	this.init() = function(users) { 
+		// if users is a bag
+		if(users && typeof users == 'object' && typeof users.constructor = Object) {
+			// iterate through object and create group map
+			for(var user: users) {
+				// update helper map
+				helperMap[user.id] = user.country;
+				if(typeof groupBy[user.country] == "undefined") {
+					// add key to maop
+					groupBy[user.country] = {};
+					groupBy[user.country]["country"] = user.country;
+					groupBy[user.country]["visitors"] = {};
+					groupBy[user.country]["visitors"][user.id] = user;
+					
+				}
+				else {
+					groupBy[user.country]["visitors"][user.id] = user;
+				}
+			}
+		}
+
+	}
+	
+	// return 
+	this.insert = function(diff){
+		var pathSplit = diff.path.split(".");
+		// we now have key values
+		var id = diff.payload.id;
+		var country = helper[id];
+		// add new user to the helper map
+		helper[id] = diff.payload.country;
+		groupMap[country]["visitors"][id] = payload;
+		var returnPath = "out." + country + "." + id;
+		return new Diff(diff.opcode, diff.payload, returnPath);
+		
+	};
+	
+	// can the payload include properties???????
+	this.delete = function(diff){
+		var returnPath = "";
+		var pathSplit = diff.path.split(".");
+		var id = pathSplit[1];
+		// use the id to delete the value from the groupMap
+		var country = helper[id];
+		delete groupMap[country]["visitors"][id];
+		returnPath = returnPath + "out." + country + "." + id;
+		
+		// return the output diff
+		return new Diff(diff.opcode, diff.payload, returnPath)
+		
+		
+		
+		
+		
+		
+	};
+	this.update = function(diff) {
+		var returnPath = "";
+		var pathSplit = diff.path.split(".");
+		//pathSplit is an array of the key values in the path
+		// extract the id(user -> id)
+		var id = pathSplit[1];
+		// the property to update is the last key in the path
+		var property = pathSplit[pathSplit.size() - 1];
+		// extract the country from the helper map
+		var country = helper[id];
+		// get the return path for the diff
+		returnPath = returnPath + "out." + country + "." + id + "." + property;
+		
+		return new Diff(diff.opcode, diff.payload, returnPath);
+		
+		
+		
+		
+		// update the groupMap and the helper map to reflect changes
+		groupMap[country]["visitors"][id][property] = diff.payload;
+		
+		
+	}
+}
+	
+
+}
